@@ -1,5 +1,7 @@
 package com.moon.coder.mockito;
 
+import javax.security.auth.callback.Callback;
+
 /**
  * Created by Moon on 1/08/2021
  */
@@ -12,6 +14,9 @@ public class Service {
 
     public boolean query(String query) {
         return database.isAvailable();
+    }
+    public <T> Object login(Callback callback) {
+       return null;
     }
 
 
