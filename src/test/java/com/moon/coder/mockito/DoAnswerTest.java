@@ -2,11 +2,16 @@ package com.moon.coder.mockito;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.stubbing.Answer;
 
 
 import javax.security.auth.callback.Callback;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.mockito.AdditionalAnswers.returnsFirstArg;
@@ -27,13 +32,16 @@ Also note that there a different ways to configure an answer:
  */
 @ExtendWith(MockitoExtension.class)
 public class DoAnswerTest {
-    //TODO: those 2 tests needs to be fixed
+    //TODO: those 2 tests needs to be fixed but could not
 
     @Mock
     List<String> myList;
 
+
     @Test
     public final void answerTest() {
+        var asList = Arrays.asList("someElement_test", "someElement");
+        myList.addAll(asList);
 
         // with doAnswer():
         doAnswer(returnsFirstArg()).when(myList).add(anyString());
@@ -44,11 +52,23 @@ public class DoAnswerTest {
     }
     @Test
     public final void callbackTest() {
-        Service service = mock(Service.class);
-        when(service.login(any(Callback.class))).thenAnswer(i -> {
-            Callback callback = i.getArgument(0);
-            callback.notify("Success");
+        List<User> userMap = new ArrayList<>();
+        UserDao dao = mock(UserDao.class);
+        when(dao.save(any(User.class))).thenAnswer(i -> {
+            User user = i.getArgument(0);
+            userMap.add( user);
             return null;
         });
+    /*    when(dao.find(any(Integer.class))).thenAnswer(i -> {
+            int id = i.getArgument(0);
+            return userMap.get(id);
+        });*/
+
+//        Service service = mock(Service.class);
+//        when(service.login(any(Callback.class))).thenAnswer(i -> {
+//            Callback callback = i.getArgument(0);
+//            callback.notify();
+//            return null;
+//        });
     }
 }
