@@ -13,7 +13,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 public class ArticleManagerTest {
     @Mock ArticleDatabase database;
-    @Mock User user;
+    @Mock
+    OtherUser user;
 
     @InjectMocks
     private ArticleManager manager;   //creates an instance of ArticleManager and injects the mocks into it

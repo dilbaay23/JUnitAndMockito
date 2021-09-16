@@ -2,14 +2,10 @@ package com.moon.coder.mockito;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.mockito.stubbing.Answer;
 
 
-import javax.security.auth.callback.Callback;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -52,10 +48,10 @@ public class DoAnswerTest {
     }
     @Test
     public final void callbackTest() {
-        List<User> userMap = new ArrayList<>();
+        List<OtherUser> userMap = new ArrayList<>();
         UserDao dao = mock(UserDao.class);
-        when(dao.save(any(User.class))).thenAnswer(i -> {
-            User user = i.getArgument(0);
+        when(dao.save(any(OtherUser.class))).thenAnswer(i -> {
+            OtherUser user = i.getArgument(0);
             userMap.add( user);
             return null;
         });

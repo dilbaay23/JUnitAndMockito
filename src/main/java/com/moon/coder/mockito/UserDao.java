@@ -6,12 +6,12 @@ package com.moon.coder.mockito;
 public class UserDao {
 
 
-    public User save(User user) {
+    public OtherUser save(OtherUser user) {
         // TODO Auto-generated method stub
 
-        return new User();
+        return new OtherUser();
     }
-    public User find(int id) {
+    public OtherUser find(int id) {
         // TODO Auto-generated method stub
 
         return null;
